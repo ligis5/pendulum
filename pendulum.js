@@ -1,9 +1,10 @@
-function Pendulum(ctx, width, y, height, lineLength, mass) {
+function Pendulum(ctx, x, y, lineLength, mass, color) {
   this.radius = 10;
+  this.color = color ? color : "black";
   this.mass = mass;
   this.angle = Math.PI / 4;
-  this.linePos = { x: width / 2, y: y };
-  let endX = this.linePos.x + width / 5;
+  this.linePos = { x: x, y: y };
+  let endX = this.linePos.x;
   let endY = this.linePos.y + lineLength;
   this.length = Math.sqrt(
     Math.pow(endX + this.radius - this.linePos.x, 2) +
@@ -16,9 +17,11 @@ function Pendulum(ctx, width, y, height, lineLength, mass) {
     ctx.beginPath();
     ctx.moveTo(this.linePos.x, this.linePos.y);
     ctx.lineTo(ballX, ballY);
+    ctx.strokeStyle = this.color;
     ctx.stroke();
     ctx.beginPath();
     ctx.arc(ballX, ballY, this.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color;
     ctx.fill();
     ctx.closePath();
   };
@@ -28,8 +31,6 @@ function Pendulum(ctx, width, y, height, lineLength, mass) {
 
   // on every frame new pendulum gets drawn on updated position.
   this.move = (f) => {
-    // let force = gravity * Math.sin(this.angle);
-    // this.acc = (-1 * force) / this.length;
     this.acc = f;
     this.vel += this.acc;
     this.angle += this.vel;

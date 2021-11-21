@@ -8,5 +8,9 @@ body {
   height: 100vh;
 }
 #canvas {
-  background-color: rgb(70, 22, 22);
+  background: linear-gradient(
+    107deg,
+    rgb(168, 189, 153) 0%,
+    rgb(189, 156, 156) 100%
+  );
 }
