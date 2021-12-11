@@ -10,7 +10,8 @@ function Pendulum(ctx, x, y, lineLength, mass, color) {
     Math.pow(endX + this.radius - this.linePos.x, 2) +
       Math.pow(endY + this.radius - this.linePos.y, 2)
   );
-  this.ballPos = { x: endX, y: endY };
+  this.ballPos = {x:this.length * Math.sin(this.angle) + this.linePos.x,y:this.length * Math.cos(this.angle) + this.linePos.y};
+  
 
   // function for drawing new pendulum.
   let CreatePendulum = (ballX, ballY) => {
